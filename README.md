@@ -1,6 +1,8 @@
 # OpenShift Advanced Deployment Homework
 
+----
 By: Miguel Iglesias
+----
 
 == Description
 
