@@ -1,0 +1,36 @@
+---
+###### VARIABLES YOU SHOULD CONFIGURE FOR YOUR DEPLOYEMNT
+###### OR PASS as "-e" args to ansible-playbook command
+
+### Authentication for Red Hat Registry (registry.redhat.io), needs to be a user that can log into the customer portal 
+redhat_registry_user: "11009103|MEX20181112"
+redhat_registry_password: "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiI5ZjNhNmU4OTlkOGQ0ZmU1OWRlOGU5ZjU1NTZiZjBlNCJ9.Winon9JnlnrySxdF4ZgSL8Xy84pJKebv74CYlXjLPP-tU5AM31gw-J6T2O83BVYRRsdJvvLgMD8L_CDyqAVshbTaeYlqrtXcLO5rkD52yJqjkHmDueQuym3w2IBmmS0bhg0hpR6bunD5fKAQ8TgtrOEOQtZnzw6_qV0l_FPpx9Sf0ucnD7eYBp2ZpyGwxXsasyeg36pOpWlBSK_KuOrsUbLnl1vg7Wz2bAkLGhusvG00N_Li-wddvD26p3HDaWAifgYS_SlCPdIQtWgDDliQkwoGdYc5B7inE9fCtT5ftWlDEfdMNyC84T0CUAs5ukiwgfjSq0PHaUf7Jk_Az5ziyf45RnUNeT2_JZfmwdpjfIxBTDQj06OMfMAzNSma67K9WTativRIP3bqgeRO-UQCaX-Vf1a4zYRmG2VLqNN5I-Mtq963MXJwSxizdFgdPWRJTALNWSgNbI5HPO69RUmyXGxgsIm__alIs9sEDSzuLmazNSG8aipCDlWMq6rN5vjoJHoZuF3kDA4YdG4qaEGRdhX8AdoETWARuzoQcWb97XF0DgcqfCxsLmAln9cCJ9WUIKAgA0xAKKTNEhQuKa8q5VNqQR0ggVr5QO3EFqnUXu5oHm0Av78nj8LHrn6p_OoLEMcTlpfo9Z30_4FBIgbCTq0vPbEfq5D215hmK270XnI"
+
+## guid is the deployment unique identifier, it will be appended to all tags,
+## files and anything that identifies this environment from another "just like it"
+guid: "{{GUID}}"
+
+## Networking
+subdomain_base_short: "{{guid}}"
+subdomain_base_suffix: ".openshift.opentlc.com"
+subdomain_base: "{{subdomain_base_short}}{{subdomain_base_suffix}}"
+apps_subdomain: "apps.{{subdomain_base}}"
+
+internal_suffix: "internal"
+lb_internal_dns: loadbalancer1.{{ guid }}.{{internal_suffix}} 
+lb_public_dns: loadbalancer.{{subdomain_base}}
+
+
+## Environment Sizing
+
+masters_count: 3
+infras_count: 2
+nodes_count: 3
+
+#### Vars for the OpenShift Ansible hosts file
+ansible_ssh_user: ec2-user
+master_api_port: 443
+overwrite_certificates: true
+
+
+

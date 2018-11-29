@@ -1,0 +1,30 @@
+---
+- name: OpenShift Advanced Deployment Homework - Preparing Bastion Host
+  hosts: localhost
+  become: true
+  vars_files:
+    - "{{ ANSIBLE_REPO_PATH }}/config/env_vars.yml"
+  roles:
+    - miglesias.bastion-tasks
+- name: OpenShift Advanced Deployment Homework - Installing OpenShift 3.11.16
+  hosts: all
+  roles:
+    - miglesias.provisioning
+    - miglesias.openshift
+    - miglesias.post-installation
+    - miglesias.nfs-recycle-pvs
+    - miglesias.nfs-retain-pvs
+    - miglesias.deploy-test-app
+    - miglesias.add-user
+    - miglesias.deploy-jenkins
+    - miglesias.deploy-pipeline
+
+
+
+
+
+
+
+
+
+

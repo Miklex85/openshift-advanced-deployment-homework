@@ -1,0 +1,8 @@
+---
+# tasks file for miglesias.bastion-tasks
+- name: Step 1 - Bastion Tasks
+  debug: msg="Environment GUID={{guid}}"
+- name: 1.1 Copy over ansible hosts file
+  copy:
+    src: "{{ ANSIBLE_REPO_PATH }}/hosts"
+    dest: /etc/ansible/hosts
