@@ -8,7 +8,7 @@ redhat_registry_password: "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiI5ZjNhNmU4OTlkOGQ0ZmU1
 
 ## guid is the deployment unique identifier, it will be appended to all tags,
 ## files and anything that identifies this environment from another "just like it"
-guid: "{{GUID}}"
+guid: "{{ lookup('env','GUID') }}"
 
 ## Networking
 subdomain_base_short: "{{guid}}"
