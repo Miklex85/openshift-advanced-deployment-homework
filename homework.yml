@@ -1,4 +1,9 @@
 ---
+- name: Prepare GUID environment variable across all hosts
+  hosts: all
+  tasks:
+    - name: All GUID env variable
+      shell: export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc
 - name: OpenShift Advanced Deployment Homework - Preparing Bastion Host
   hosts: localhost
   become: true

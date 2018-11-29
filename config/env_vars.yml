@@ -25,7 +25,7 @@ lb_public_dns: loadbalancer.{{subdomain_base}}
 
 masters_count: 3
 infras_count: 2
-nodes_count: 3
+nodes_count: 4
 
 #### Vars for the OpenShift Ansible hosts file
 ansible_ssh_user: ec2-user
