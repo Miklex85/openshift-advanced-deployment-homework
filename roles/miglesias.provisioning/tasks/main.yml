@@ -1,5 +1,6 @@
 ---
-- name: Prepare GUID environment variable across all hosts
-  shell: export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc
-- name: Step 1- OpenShift Provisioning
+- name: Step 1 - OpenShift Provisioning
   ping:
+- name: Step 2 - Prepare GUID environment variable across all hosts
+  shell: export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc
+

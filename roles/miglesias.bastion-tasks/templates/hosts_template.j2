@@ -231,25 +231,24 @@ nfs
 {{lb_internal_dns}}
 
 [masters]
-master[1:{{masters_count}}].{{guid}}.internal
+master[1:{{masters_count}}].{{guid}}.{{internal_suffix}}
 
 
 [etcd]
-master[1:{{masters_count}}].{{guid}}.internal
+master[1:{{masters_count}}].{{guid}}.{{internal_suffix}}
 
 
 [nodes]
 ## These are the masters
-master[1:{{masters_count}}].{{guid}}.internal openshift_node_group_name='node-config-master' openshift_node_problem_detector_install=true
+master[1:{{masters_count}}].{{guid}}.{{internal_suffix}} openshift_node_group_name='node-config-master' openshift_node_problem_detector_install=true
 
 ## These are infranodes
-infranode[1:{{infras_count}}].{{guid}}.internal openshift_node_group_name='node-config-infra' openshift_node_problem_detector_install=true
-
+infranode[1:{{infras_count}}].{{guid}}.{{internal_suffix}} openshift_node_group_name='node-config-infra' openshift_node_problem_detector_install=true
 
 ## These are regular nodes
 
-node[1:{{nodes_count}}].{{guid}}.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
+node[1:{{nodes_count}}].{{guid}}.{{internal_suffix}} openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
 
 [nfs]
-support1.{{guid}}.internal
+support1.{{guid}}.{{internal_suffix}}
 
