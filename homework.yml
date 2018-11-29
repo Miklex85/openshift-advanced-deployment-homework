@@ -8,7 +8,7 @@
   hosts: nodes
   tasks:
     - name: Docker Status
-      shell: systemctl status docker | grep Active 
+      service: name=docker state=started
 - name: OpenShift Advanced Deployment Homework - Preparing Bastion Host
   hosts: localhost
   become: true
