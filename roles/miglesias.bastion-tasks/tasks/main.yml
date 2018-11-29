@@ -2,7 +2,11 @@
 # tasks file for miglesias.bastion-tasks
 - name: Step 1 - Bastion Tasks
   debug: msg="Environment GUID={{guid}}"
-- name: 1.1 Copy over ansible hosts file
+- name: 1.1 Generate ansible hosts file
+  template:
+    src: "hosts_template.j2"
+    dest: "{{ ANSIBLE_REPO_PATH }}/workdir/hosts-{{ guid }}"
+- name: 1.2 Copy over ansible hosts file
   copy:
-    src: "{{ ANSIBLE_REPO_PATH }}/hosts"
+    src: "{{ ANSIBLE_REPO_PATH }}/workdir/hosts-{{ guid }}"
     dest: /etc/ansible/hosts
