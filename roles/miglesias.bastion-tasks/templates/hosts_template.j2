@@ -8,7 +8,7 @@
 ### Ansible Vars
 ###########################################################################
 timeout=60
-ansible_user= {{ansible_ssh_user}}
+ansible_user={{ansible_ssh_user}}
 ansible_become=yes
 
 ###########################################################################
@@ -231,32 +231,24 @@ nfs
 {{lb_internal_dns}}
 
 [masters]
-{% for master_node in xrange({{masters_count}}) %}
-master{{master_node}}.{{guid}}.internal
-{% endfor %}
+master[1:{{masters_count}}].{{guid}}.internal
+
 
 [etcd]
-{% for master_node in xrange({{masters_count}}) %}
-master{{master_node}}.{{guid}}.internal
-{% endfor %}
+master[1:{{masters_count}}].{{guid}}.internal
+
 
 [nodes]
 ## These are the masters
-{% for master_node in xrange({{masters_count}}) %}
-master{{master_node}}.{{guid}}.internal openshift_node_group_name='node-config-master' openshift_node_problem_detector_install=true
-{% endfor %}
+master[1:{{masters_count}}].{{guid}}.internal openshift_node_group_name='node-config-master' openshift_node_problem_detector_install=true
 
 ## These are infranodes
-{% for infra_node in xrange({{infras_count}}) %}
-infranode{{infraNode}}.{{guid}}.internal openshift_node_group_name='node-config-infra' openshift_node_problem_detector_install=true
-{% endfor %}
+infranode[1:{{infras_count}}].{{guid}}.internal openshift_node_group_name='node-config-infra' openshift_node_problem_detector_install=true
 
 
 ## These are regular nodes
 
-{% for node in xrange({{nodes_count}}) %}
-node{{node}}.{{guid}}.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
-{% endfor %}
+node[1:{{nodes_count}}].{{guid}}.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
 
 [nfs]
 support1.{{guid}}.internal
